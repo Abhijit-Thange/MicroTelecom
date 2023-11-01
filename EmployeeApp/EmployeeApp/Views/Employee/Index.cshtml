@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EmployeeApp.Models.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (TempData["message"] != null)
+{
+    <script>
+            alert("@TempData["message"]")
+    </script>
+}
+
+<p>
+    @Html.ActionLink("Add", "AddEmployee",null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Address</td>
+            <td>@item.Mobile</td>
+            <td>@item.DOBDateOnly</td>
+            <td>
+                @Html.ActionLink("Modify", "EditEmployeeInfo", new { Id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete  ", "DeleteEmployee", new { Id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
